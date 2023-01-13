@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:students_app/model/data_model.dart';
+import 'package:students_app/provider/provider_update.dart';
 import 'package:students_app/screens/home/screen_home.dart';
 
 Future<void> main() async {
@@ -18,13 +20,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Student Info',
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ProviderClass()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Student Info',
+        theme: ThemeData(
+          primarySwatch: Colors.orange,
+        ),
+        home: const ScreenHome(),
       ),
-      home: const ScreenHome(),
     );
   }
 }
