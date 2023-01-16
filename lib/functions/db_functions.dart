@@ -6,7 +6,6 @@ import 'package:students_app/provider/provider_update.dart';
 
 Future<void> addStudent(StudentModel value) async {
   final studentDB = await Hive.openBox<StudentModel>('student_db');
-  // ignore: no_leading_underscores_for_local_identifiers
 
   final id = await studentDB.add(value);
   value.id = id;
